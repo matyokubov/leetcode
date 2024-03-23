@@ -27,6 +27,4 @@ def main(root):
     if not root: return []
     else: return main(root.left)+[root.val]+main(root.right)
 
-    
-    
 print(main(root))
