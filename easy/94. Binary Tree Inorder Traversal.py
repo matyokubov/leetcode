@@ -11,7 +11,6 @@ root = TreeNode(val=1, right=child1)
 
 #Logic
 def main(root):
-    '''
     res, stack = [], []
     cur = root
     while cur or stack:
@@ -23,8 +22,5 @@ def main(root):
             res.append(cur.val)
             cur = cur.right
     return res
-    '''
-    if not root: return []
-    else: return main(root.left)+[root.val]+main(root.right)
 
 print(main(root))
