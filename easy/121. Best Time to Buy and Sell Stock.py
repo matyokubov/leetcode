@@ -1,33 +1,21 @@
 #Input
-prices = [7,6,4,3,1]
+prices = [7,1,5,3,6,4]
 
 #Logic
 def main(prices):
-    def findTheIndexOfTheMinValue(prices):
-        ir = 0
-        res = prices[ir]
-        for i in range(len(prices)):
-            if i!=len(prices)-1:
-                if not res<=prices[i+1]:
-                    res = prices[i+1]
-                    ir = i+1
-        return ir
-    def findTheIndexOfTheMaxValue(prices):
-        ir = 0
-        res = prices[ir]
-        for i in range(len(prices)):
-            if i!=len(prices)-1:
-                if not res>=prices[i+1]:
-                    res = prices[i+1]
-                    ir = i+1
-        return ir
-    idxMinPrice = findTheIndexOfTheMinValue(prices)
-    if idxMinPrice!=len(prices)-1:
-        pricesOfFuture = prices[idxMinPrice+1:]
-        idxMaxPrice = findTheIndexOfTheMaxValue(pricesOfFuture)
-        profit = pricesOfFuture[idxMaxPrice] - prices[idxMinPrice]
-    else: profit = 0
-    return 0 if profit<=0 else profit
+    left, right = 0, 1
+    maxProfit = 0
+    while right < len(prices):
+        if prices[left] < prices[right]:
+            # What if you sell it
+            profit = prices[right] - prices[left]
+            maxProfit = max(maxProfit, profit)
+        else:
+            # If left isn't profitable, then right is lower
+            # So left as right might be profitable
+            left = right
+        right+=1
+    return maxProfit
         
 #Output
 print(main(prices))
